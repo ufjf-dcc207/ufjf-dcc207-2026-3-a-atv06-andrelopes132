@@ -9,18 +9,21 @@ const EMOJI_MAP = new Map<EMOJI_KEYS, string>([
     ["dead", "😵"],
 ]);
 
-
-
 export default function Emoji(){
     const [status, setStatus] = useState<EMOJI_KEYS>("sick")
 
     function happyClick(){
-        console.log(status);
-        console.log("happy");
         setStatus("happy");
-        console.log(status);
     }
     
+    function sickClick(){
+        setStatus("sick");
+    }
+
+    function deadClick(){
+        setStatus("dead");
+    }
+
     return (
         <>
             <div className="emoji">
@@ -28,7 +31,9 @@ export default function Emoji(){
             </div>
 
             <div className="acoes">
-                <button onClick={happyClick}>BOTAO</button>
+                <button onClick={happyClick}>HAPPY</button>
+                <button onClick={sickClick}>SICK</button>
+                <button onClick={deadClick}>DEAD</button>
             </div>
         </>
         
