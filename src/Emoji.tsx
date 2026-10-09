@@ -24,6 +24,25 @@ export default function Emoji(){
         setStatus("dead");
     }
 
+    function cicleClick(){
+        // if (status == "happy") setStatus("sick");
+        // if (status == "sick") setStatus("dead");
+        // if (status == "dead") setStatus("happy");
+
+        switch(status){
+            case "happy":
+                setStatus("sick");
+                break;
+            case "sick":
+                setStatus("dead");
+                break;
+            case "dead":
+                setStatus("happy");
+                break;
+        }
+
+    }
+
     return (
         <>
             <div className="emoji">
@@ -34,6 +53,8 @@ export default function Emoji(){
                 <button onClick={happyClick}>HAPPY</button>
                 <button onClick={sickClick}>SICK</button>
                 <button onClick={deadClick}>DEAD</button>
+                <br/>
+                <button onClick={cicleClick}>PROXIMO</button>
             </div>
         </>
         
