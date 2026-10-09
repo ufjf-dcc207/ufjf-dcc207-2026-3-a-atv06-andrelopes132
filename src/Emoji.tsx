@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./Emoji.css"
+import Vida from "./Vida";
 
 type EMOJI_KEYS = "happy" | "sick" | "dead";
 
@@ -48,6 +49,8 @@ export default function Emoji(){
             <div className="emoji">
                 {EMOJI_MAP.get(status) || "🫥​"}
             </div>
+
+            <Vida/>
 
             <div className="acoes">
                 <button onClick={happyClick}>HAPPY</button>
