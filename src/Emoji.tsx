@@ -50,7 +50,10 @@ export default function Emoji(){
                 {EMOJI_MAP.get(status) || "🫥​"}
             </div>
 
-            <Vida/>
+            <Vida emoji="❤️"/>
+            <Vida emoji="🍗​"/>
+            <Vida emoji="💧​​"/>
+            <Vida emoji="💥"/>
 
             <div className="acoes">
                 <button onClick={happyClick}>HAPPY</button>

@@ -1,14 +1,20 @@
 import { useState } from "react";
+import "./Vida.css"
 
-export default function Vida() {
+type emojiProps = {
+    emoji: string;
+}
+
+export default function Vida({emoji} : emojiProps) {
     
     const [valor, setValor] = useState(0); 
-    let coracoes = '';
 
-    for(let i = 0; i<5; i++){
-        if (i<valor) coracoes += "❤️";
-        else coracoes += "🩶​";
-    }
+    // let coracoes = '';
+
+    // for(let i = 0; i<5; i++){
+    //     if (i<valor) coracoes += "❤️";
+    //     else coracoes += "🩶​";
+    // }
 
     function aumenta(){
         setValor(valor === 5 ? valor : valor + 1);
@@ -19,10 +25,12 @@ export default function Vida() {
     
     return (
         <>
-        <div className="vida">
-            <button onClick={diminui}>-</button> {coracoes} <button onClick={aumenta}>+</button>
-        </div>
-            
+            <div className="vida">
+                <button onClick={diminui}> - </button>  
+                    <span className="ativo">{emoji.repeat(valor)}</span>
+                    <span className="inativo">{emoji.repeat(5-valor)} </span>
+                <button onClick={aumenta}> + </button>
+            </div>    
         </>
     );
 }
