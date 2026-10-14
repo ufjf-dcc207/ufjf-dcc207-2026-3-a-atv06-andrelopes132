@@ -51,9 +51,9 @@ export default function Emoji(){
             </div>
 
             <Vida emoji="❤️"/>
-            <Vida emoji="🍗​"/>
+            <Vida emoji="⚡"/>
             <Vida emoji="💧​​"/>
-            <Vida emoji="💥"/>
+            <Vida emoji="🍗​"/>
 
             <div className="acoes">
                 <button onClick={happyClick}>HAPPY</button>
