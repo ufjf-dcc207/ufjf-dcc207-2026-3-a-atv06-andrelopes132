@@ -11,58 +11,62 @@ const EMOJI_MAP = new Map<EMOJI_KEYS, string>([
 ]);
 
 export default function Emoji(){
-    const [status, setStatus] = useState<EMOJI_KEYS>("sick")
+    const [status, setStatus] = useState<EMOJI_KEYS>("happy");
+    const [vida, setVida] = useState<number>(4);
+    const [comida, setComida] = useState<number>(3);
+    const [agua, setAgua] = useState<number>(2);
+    const [luz, setLuz] = useState<boolean>(true);
+    const [energia, setEnergia] = useState<number>(1);
 
-    function happyClick(){
-        setStatus("happy");
+    function alimentar(){
+        setComida(Math.min(5, comida+1));
     }
     
-    function sickClick(){
-        setStatus("sick");
+    function hidratar(){
+        setAgua(Math.min(5, agua+1));
     }
 
-    function deadClick(){
-        setStatus("dead");
+    function alterarLuz(){
+        setLuz(!luz);
+
     }
 
     function cicleClick(){
-        // if (status == "happy") setStatus("sick");
-        // if (status == "sick") setStatus("dead");
-        // if (status == "dead") setStatus("happy");
+        setAgua(Math.max(0, agua-1));
+        setComida(Math.max(0, comida-1));
 
-        switch(status){
-            case "happy":
-                setStatus("sick");
-                break;
-            case "sick":
-                setStatus("dead");
-                break;
-            case "dead":
-                setStatus("happy");
-                break;
-        }
+        if (comida === 0)    setVida((prevVida) => Math.max(0, prevVida-1));
+        if (agua === 0)      setVida((prevVida) => Math.max(0, prevVida-1));
+        if (energia === 0)   setVida((prevVida) => Math.max(0, prevVida-1));
 
+        if (luz) setEnergia(Math.max(0, energia - 1));    
+        else setEnergia(Math.min(5, energia + 1));
     }
 
+    
+
     return (
-        <>
-            <div className="emoji">
+        <div className="emoji">
+            <div className="face">
                 {EMOJI_MAP.get(status) || "🫥​"}
             </div>
 
-            <Vida emoji="❤️"/>
-            <Vida emoji="⚡"/>
-            <Vida emoji="💧​​"/>
-            <Vida emoji="🍗​"/>
+            <div className="atributos">
+                <Vida emoji="❤️" valor={vida}/>
+                <Vida emoji="🍗​" valor={comida}/>
+                <Vida emoji="💧​​" valor={agua}/>
+                <Vida emoji="⚡" valor={energia}/>
+                {luz && "💡"}
+            </div>
 
             <div className="acoes">
-                <button onClick={happyClick}>HAPPY</button>
-                <button onClick={sickClick}>SICK</button>
-                <button onClick={deadClick}>DEAD</button>
+                <button onClick={alimentar}>Alimentar</button>
+                <button onClick={hidratar}>Hidratar</button>
+                <button onClick={alterarLuz}>{luz ? "Desligar" : "Ligar"} Luz</button>
                 <br/>
-                <button onClick={cicleClick}>PROXIMO</button>
+                <button onClick={cicleClick}>Ciclo</button>
             </div>
-        </>
+        </div>
         
     )
 }
