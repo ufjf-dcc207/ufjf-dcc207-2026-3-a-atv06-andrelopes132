@@ -1,7 +1,7 @@
 import { useState } from "react";
 import "./Emoji.css"
 import Vida from "./Vida";
-import type { EMOJI_KEYS, EmojiType } from "./Types";
+import type { AtributoType, EMOJI_KEYS, EmojiType } from "./Types";
 
 const EMOJI_MAP = new Map<EMOJI_KEYS, string>([
     ["happy", "😀"],
@@ -19,25 +19,23 @@ export default function Emoji(){
         luz: true
     })
 
-
-
     function alimentar(){
-        // if (vida === 0) return;
-        // setComida(Math.min(5, comida+1));
+        if (emoji.vida === 0) return;
+        setEmoji({...emoji, comida: Math.min(5, emoji.comida+1) as AtributoType});
     }
     
     function hidratar(){
-        // if (vida === 0) return;
-        // setAgua(Math.min(5, agua+1));
+        if (emoji.vida === 0) return;
+        setEmoji({...emoji, agua: Math.min(5, emoji.agua+1) as AtributoType});
     }
 
     function alterarLuz(){
-        // setLuz(!luz);
+        setEmoji({...emoji, luz: !(emoji.luz)});
     }
 
     function cicleClick(){
-        // if (vida === 0) return;
-        // setAgua(Math.max(0, agua-1));
+        // if (emoji.vida === 0) return;
+        // setEmoji({...emoji, agua: Math.max(0, emoji.agua-1) as AtributoType});
         // setComida(Math.max(0, comida-1));
 
         // if (comida === 0)    setVida((prevVida) => Math.max(0, prevVida-1));
